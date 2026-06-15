@@ -22,13 +22,16 @@ El sistema está dividido en tres capas:
 ## Dependencias
 
 ### Backend
-- Java 17
-- Spring Boot 3
+- Java 21
+- Spring Boot 4.1.0
 - Spring Data JPA
-- MySQL Connector
+- Spring Boot Starter Validation
+- Spring Boot Starter Web MVC
+- MySQL Connector/J
+- Lombok
 
 ### Frontend
-- React 18
+- React 19
 - Vite
 - react-router-dom
 
@@ -47,9 +50,33 @@ El sistema está dividido en tres capas:
 
 ---
 
+## Instrucciones de instalación
+
+### Requisitos previos
+
+- Java 21 (JDK)
+- Node.js (LTS) y npm
+- MySQL corriendo en `localhost:3306`, usuario `root` sin contraseña (configuración por defecto de Laragon)
+
+### Pasos
+
+1. Clonar el repositorio y ubicarse en la rama `AnaisPalma-VicenteVerdaguer`:
+   ```bash
+   git clone https://github.com/Anapan-bit/TPY1101-001D-FULLSTACK-APALMAVVERDAGUER
+   cd TPY1101-001D-FULLSTACK-APALMAVVERDAGUER
+   git checkout AnaisPalma-VicenteVerdaguer
+   ```
+2. Levantar MySQL (Laragon). La base de datos `tpy1101_db` se crea automáticamente al iniciar el backend (`createDatabaseIfNotExist=true`).
+3. Instalar dependencias e iniciar el backend (ver [Ejecución del backend](#ejecución-del-backend)).
+4. Instalar dependencias e iniciar el frontend (ver [Ejecución del frontend](#ejecución-del-frontend)).
+
+---
+
 ## Configuración de la base de datos
 
 La base de datos se crea automáticamente. Solo se requiere tener MySQL corriendo en `localhost:3306` con usuario `root` sin contraseña (configuración por defecto de Laragon).
+
+Hibernate crea la tabla `usuarios` automáticamente (`spring.jpa.hibernate.ddl-auto=update`) y `data.sql` carga los datos de prueba al iniciar el backend.
 
 El archivo `database/schema.sql` contiene el DDL completo y los datos de prueba para revisión o carga manual.
 
