@@ -6,8 +6,10 @@ export async function login(username, password) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ username, password }),
   });
-  if (res.status === 401) throw new Error('Credenciales incorrectas');
-  if (!res.ok) throw new Error('Error al iniciar sesión');
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({}));
+    throw new Error(body.detail || body.message || 'Error al iniciar sesión');
+  }
   return res.json();
 }
 

@@ -21,10 +21,10 @@ public class UsuarioService {
 
     public UsuarioResponse login(LoginRequest request) {
         Usuario usuario = usuarioRepository.findByUsername(request.getUsername())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Credenciales inválidas"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "El usuario no existe"));
 
         if (!usuario.getPassword().equals(request.getPassword())) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Credenciales inválidas");
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Contraseña incorrecta");
         }
 
         return UsuarioResponse.fromEntity(usuario);
