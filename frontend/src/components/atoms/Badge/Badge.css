@@ -1,0 +1,17 @@
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badge-admin {
+  background: #fff0e0;
+  color: #e07700;
+}
+
+.badge-user {
+  background: #e0f0ff;
+  color: #1e6bb8;
+}

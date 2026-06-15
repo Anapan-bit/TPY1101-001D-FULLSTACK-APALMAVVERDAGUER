@@ -1,169 +1,116 @@
-# TPY1101-001D-FULLSTACK
+# TPY1101-001D-FULLSTACK — Mantenedor de Usuarios
 
-Repositorio oficial de la Evaluación Diagnóstica Full Stack.
+Sistema web Full Stack para gestión de usuarios con Login, Listado, Creación, Edición y Eliminación.
 
-## Objetivo
+## Integrantes
 
-Desarrollar una aplicación web Full Stack que permita:
-
-* Login de acceso mediante usuario y contraseña.
-* Listar usuarios.
-* Crear usuarios.
-* Modificar usuarios.
-* Eliminar usuarios.
-
-Tecnologías requeridas:
-
-* Frontend: React
-* Backend: Spring Boot
-* Base de Datos: Oracle, PostgreSQL, MySQL o equivalente.
+- Anais Palma
+- Vicente Verdaguer
 
 ---
 
-## Estructura del Proyecto
+## Explicación técnica
 
-```text
-/frontend
-/backend
-/database
+El sistema está dividido en tres capas:
+
+- **Frontend (React + Vite):** SPA con React Router para navegación entre pantallas. Llama al backend mediante `fetch`. Guarda el usuario autenticado en `localStorage` para proteger las rutas privadas.
+- **Backend (Spring Boot):** API REST con controladores para autenticación (`/api/auth/login`) y CRUD completo de usuarios (`/api/usuarios`). Usa JPA/Hibernate para mapear la entidad `Usuario` a MySQL. CORS habilitado para el puerto 5173.
+- **Base de datos (MySQL):** Tabla `usuarios` creada automáticamente por JPA (`ddl-auto=update`). Datos iniciales cargados desde `data.sql` con `INSERT IGNORE`.
+
+---
+
+## Dependencias
+
+### Backend
+- Java 17
+- Spring Boot 3
+- Spring Data JPA
+- MySQL Connector
+
+### Frontend
+- React 18
+- Vite
+- react-router-dom
+
+### Base de datos
+- MySQL 8 (vía Laragon)
+
+---
+
+## Puertos
+
+| Servicio   | Puerto |
+|------------|--------|
+| Backend    | 8080   |
+| Frontend   | 5173   |
+| MySQL      | 3306   |
+
+---
+
+## Configuración de la base de datos
+
+La base de datos se crea automáticamente. Solo se requiere tener MySQL corriendo en `localhost:3306` con usuario `root` sin contraseña (configuración por defecto de Laragon).
+
+El archivo `database/schema.sql` contiene el DDL completo y los datos de prueba para revisión o carga manual.
+
+---
+
+## Ejecución del backend
+
+```bash
+cd backend
+./mvnw spring-boot:run
+```
+
+El backend quedará disponible en `http://localhost:8080`.
+
+---
+
+## Ejecución del frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+El frontend quedará disponible en `http://localhost:5173`.
+
+---
+
+## Credenciales de prueba
+
+| Username | Password  | Rol   |
+|----------|-----------|-------|
+| admin    | admin123  | ADMIN |
+| jperez   | jperez123 | USER  |
+
+---
+
+## Estructura del proyecto
+
+```
+/backend      → API REST (Spring Boot)
+/frontend     → Interfaz de usuario (React + Vite)
+/database     → schema.sql con DDL y datos iniciales
 README.md
 ```
 
 ---
 
-## Inicio de la Actividad
+## API disponible
 
-### 1. Crear un Fork del Repositorio
-
-Desde GitHub, presione el botón **Fork** para crear una copia del repositorio en su cuenta personal.
-
-Ejemplo:
-
-Repositorio original:
-
-```text
-https://github.com/rodolfogonzaleza/TPY1101-001D-FULLSTACK
+### Login
+`POST /api/auth/login`
+```json
+{ "username": "admin", "password": "admin123" }
 ```
 
-Fork del alumno:
-
-```text
-https://github.com/USUARIO_GITHUB/TPY1101-001D-FULLSTACK
-```
-
----
-
-### 2. Clonar el Fork
-
-```bash
-git clone https://github.com/USUARIO_GITHUB/TPY1101-001D-FULLSTACK.git
-```
-
-Ingresar al proyecto:
-
-```bash
-cd TPY1101-001D-FULLSTACK
-```
-
----
-
-### 3. Crear una Rama de Trabajo
-
-Cada dupla deberá crear una rama basada en `main` utilizando el siguiente formato:
-
-```text
-NombreAlumno1-NombreAlumno2
-```
-
-Ejemplo:
-
-```bash
-git checkout -b JuanPerez-MariaSoto
-```
-
-Verificar rama actual:
-
-```bash
-git branch
-```
-
----
-
-## Reglas
-
-Cada dupla deberá:
-
-1. Crear una rama propia basada en `main`.
-2. Desarrollar la solución sobre dicha rama.
-3. Realizar commits periódicos durante el desarrollo.
-4. Subir periódicamente los avances al repositorio GitHub.
-5. Entregar el trabajo completamente publicado en GitHub.
-
-### Guardar Cambios
-
-```bash
-git add .
-git commit -m "avance proyecto"
-```
-
-### Subir Rama por Primera Vez
-
-```bash
-git push -u origin NombreAlumno1-NombreAlumno2
-```
-
-### Subidas Posteriores
-
-```bash
-git push
-```
-
----
-
-## Consideraciones Importantes
-
-* La evaluación tiene una duración máxima de 120 minutos.
-* Esta actividad tiene carácter diagnóstico y no afecta las calificaciones de la asignatura.
-* Está permitido el uso de herramientas de Inteligencia Artificial como apoyo.
-* No se debe trabajar directamente sobre la rama `main`.
-* No se debe subir la carpeta `node_modules`.
-* No se deben subir archivos compilados ni carpetas generadas automáticamente por las herramientas de desarrollo.
-* Se recomienda realizar commits frecuentes durante el desarrollo.
-
----
-
-## Entrega
-
-Al finalizar la evaluación deberán entregar:
-
-* URL del repositorio GitHub (Fork).
-* Nombre de la rama utilizada.
-* Nombre de los integrantes de la dupla.
-
-* Evidencia fotográfica de:
-
-  * Pantalla de Inicio de Sesión.
-  * Pantalla de Listado de Usuarios.
-  * Pantalla de Creación de Usuario.
-  * Pantalla de Actualización de Usuario.
-  * Pantalla de Eliminación de Usuario.
-* Enviar toda la información al correo electrónico que será informado durante la actividad.
-
----
-
-## README.md del Proyecto Entregado
-
-El proyecto desarrollado deberá incluir un README propio con:
-
-* Explicación técnica breve de la solución.
-* Instrucciones de instalación.
-* Dependencias utilizadas.
-* Puertos utilizados.
-* Ejecución del frontend.
-* Ejecución del backend.
-* Configuración de la base de datos.
-* Credenciales de prueba.
-* Integrantes de la dupla.
-
-```
-```
+### CRUD Usuarios
+| Método | Endpoint            | Descripción              |
+|--------|---------------------|--------------------------|
+| GET    | /api/usuarios       | Listar todos             |
+| GET    | /api/usuarios/{id}  | Obtener por ID           |
+| POST   | /api/usuarios       | Crear usuario            |
+| PUT    | /api/usuarios/{id}  | Editar usuario           |
+| DELETE | /api/usuarios/{id}  | Eliminar usuario         |

@@ -1,0 +1,50 @@
+.btn {
+  padding: 9px 18px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, opacity 0.2s;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: #1e3a5f;
+  color: #fff;
+}
+.btn-primary:hover:not(:disabled) {
+  background: #2d5c8e;
+}
+
+.btn-secondary {
+  background: #f0f2f5;
+  color: #333;
+}
+.btn-secondary:hover:not(:disabled) {
+  background: #e2e6ea;
+}
+
+.btn-edit {
+  background: #2d6a9f;
+  color: #fff;
+  padding: 6px 14px;
+  font-size: 13px;
+}
+.btn-edit:hover:not(:disabled) {
+  background: #1e3a5f;
+}
+
+.btn-delete {
+  background: #dc3545;
+  color: #fff;
+  padding: 6px 14px;
+  font-size: 13px;
+}
+.btn-delete:hover:not(:disabled) {
+  background: #b02a37;
+}

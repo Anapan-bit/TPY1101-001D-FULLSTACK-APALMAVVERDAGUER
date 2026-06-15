@@ -1,0 +1,13 @@
+.login-form h2 {
+  font-size: 15px;
+  font-weight: 400;
+  color: #777;
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.login-form .btn {
+  width: 100%;
+  padding: 11px;
+  margin-top: 4px;
+}

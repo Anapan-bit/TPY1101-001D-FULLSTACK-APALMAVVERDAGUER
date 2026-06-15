@@ -1,0 +1,31 @@
+.listado-page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 32px 20px;
+}
+
+.listado-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.listado-header h1 {
+  font-size: 22px;
+  color: #1e3a5f;
+}
+
+.listado-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.session-info {
+  font-size: 13px;
+  color: #666;
+}
