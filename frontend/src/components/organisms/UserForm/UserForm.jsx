@@ -12,7 +12,7 @@ export default function UserForm({ form, onChange, onSubmit, onCancel, error, lo
   return (
     <div className="user-form-card">
       <form onSubmit={onSubmit}>
-        <FormField label="Username" name="username" value={form.username} onChange={onChange} required />
+        <FormField label="Usuario" name="username" value={form.username} onChange={onChange} required />
         <FormField
           label="Contraseña"
           name="password"

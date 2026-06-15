@@ -8,7 +8,7 @@ export default function UserTable({ usuarios, onEdit, onDelete, isAdmin }) {
       <thead>
         <tr>
           <th>ID</th>
-          <th>Username</th>
+          <th>Usuario</th>
           <th>Nombre</th>
           <th>Email</th>
           <th>Rol</th>

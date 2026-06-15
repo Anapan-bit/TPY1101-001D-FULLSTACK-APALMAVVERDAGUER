@@ -4,12 +4,14 @@ import { getUsuarios, deleteUsuario } from '../api';
 import UserTable from '../components/organisms/UserTable/UserTable';
 import Button from '../components/atoms/Button/Button';
 import ErrorMessage from '../components/molecules/ErrorMessage/ErrorMessage';
+import ConfirmDeleteModal from '../components/organisms/ConfirmDeleteModal/ConfirmDeleteModal';
 import './Listado.css';
 
 export default function Listado() {
   const [usuarios, setUsuarios] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
+  const [usuarioAEliminar, setUsuarioAEliminar] = useState(null);
   const navigate = useNavigate();
 
   const usuario = JSON.parse(localStorage.getItem('usuario') || 'null');
@@ -31,13 +33,19 @@ export default function Listado() {
     }
   }
 
-  async function handleEliminar(id, username) {
-    if (!confirm(`¿Eliminar al usuario "${username}"?`)) return;
+  function handleEliminar(id, username) {
+    setUsuarioAEliminar({ id, username });
+  }
+
+  async function confirmarEliminar() {
+    const { id } = usuarioAEliminar;
     try {
       await deleteUsuario(id);
       setUsuarios((prev) => prev.filter((u) => u.id !== id));
     } catch (err) {
-      alert(err.message);
+      setError(err.message);
+    } finally {
+      setUsuarioAEliminar(null);
     }
   }
 
@@ -73,6 +81,14 @@ export default function Listado() {
           onEdit={(id) => navigate(`/usuarios/editar/${id}`)}
           onDelete={handleEliminar}
           isAdmin={isAdmin}
+        />
+      )}
+
+      {usuarioAEliminar && (
+        <ConfirmDeleteModal
+          username={usuarioAEliminar.username}
+          onConfirm={confirmarEliminar}
+          onCancel={() => setUsuarioAEliminar(null)}
         />
       )}
     </div>
