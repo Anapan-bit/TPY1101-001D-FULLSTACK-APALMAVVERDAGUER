@@ -62,8 +62,8 @@ El sistema está dividido en tres capas:
 
 1. Clonar el repositorio y ubicarse en la rama `AnaisPalma-VicenteVerdaguer`:
    ```bash
-   git clone https://github.com/Anapan-bit/TPY1101-001D-FULLSTACK-APALMAVVERDAGUER
-   cd TPY1101-001D-FULLSTACK-APALMAVVERDAGUER
+   git clone https://github.com/Anapan-bit/TPY1101-001D-FULLSTACK-APALMA-VVERDAGUER
+   cd TPY1101-001D-FULLSTACK-APALMA-VVERDAGUER
    git checkout AnaisPalma-VicenteVerdaguer
    ```
 2. Levantar MySQL (Laragon). La base de datos `tpy1101_db` se crea automáticamente al iniciar el backend (`createDatabaseIfNotExist=true`).
