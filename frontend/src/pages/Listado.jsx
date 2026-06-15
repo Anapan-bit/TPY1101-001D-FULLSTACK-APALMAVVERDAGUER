@@ -13,6 +13,7 @@ export default function Listado() {
   const navigate = useNavigate();
 
   const usuario = JSON.parse(localStorage.getItem('usuario') || 'null');
+  const isAdmin = usuario?.rol === 'ADMIN';
 
   useEffect(() => {
     if (!usuario) { navigate('/'); return; }
@@ -54,7 +55,9 @@ export default function Listado() {
             Sesión: <strong>{usuario?.username}</strong> ({usuario?.rol})
           </span>
           <Button variant="secondary" onClick={handleLogout}>Cerrar sesión</Button>
-          <Button variant="primary" onClick={() => navigate('/usuarios/nuevo')}>+ Nuevo usuario</Button>
+          {isAdmin && (
+            <Button variant="primary" onClick={() => navigate('/usuarios/nuevo')}>+ Nuevo usuario</Button>
+          )}
         </div>
       </div>
 
@@ -69,6 +72,7 @@ export default function Listado() {
           usuarios={usuarios}
           onEdit={(id) => navigate(`/usuarios/editar/${id}`)}
           onDelete={handleEliminar}
+          isAdmin={isAdmin}
         />
       )}
     </div>

@@ -2,7 +2,7 @@ import Badge from '../../atoms/Badge/Badge';
 import Button from '../../atoms/Button/Button';
 import './UserTable.css';
 
-export default function UserTable({ usuarios, onEdit, onDelete }) {
+export default function UserTable({ usuarios, onEdit, onDelete, isAdmin }) {
   return (
     <table className="user-table">
       <thead>
@@ -12,7 +12,7 @@ export default function UserTable({ usuarios, onEdit, onDelete }) {
           <th>Nombre</th>
           <th>Email</th>
           <th>Rol</th>
-          <th>Acciones</th>
+          {isAdmin && <th>Acciones</th>}
         </tr>
       </thead>
       <tbody>
@@ -23,10 +23,12 @@ export default function UserTable({ usuarios, onEdit, onDelete }) {
             <td>{u.nombre}</td>
             <td>{u.email}</td>
             <td><Badge rol={u.rol} /></td>
-            <td className="actions">
-              <Button variant="edit" onClick={() => onEdit(u.id)}>Editar</Button>
-              <Button variant="delete" onClick={() => onDelete(u.id, u.username)}>Eliminar</Button>
-            </td>
+            {isAdmin && (
+              <td className="actions">
+                <Button variant="edit" onClick={() => onEdit(u.id)}>Editar</Button>
+                <Button variant="delete" onClick={() => onDelete(u.id, u.username)}>Eliminar</Button>
+              </td>
+            )}
           </tr>
         ))}
       </tbody>
